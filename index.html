@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <!-- Demo styles -->
+    <style>
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <span class="fraction"></span>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img
+            src="https://loremflickr.com/800/600/city?2"
+            alt="Slide 2 Image"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://loremflickr.com/800/600/city?1"
+            alt="Slide 1 Image"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://loremflickr.com/800/600/city?3"
+            alt="Slide 3 Image"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://loremflickr.com/800/600/city?4"
+            alt="Slide 4 Image"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://loremflickr.com/800/600/city?5"
+            alt="Slide 5 Image"
+          />
+        </div>
+        <!-- <div class="swiper-slide">Slide 6</div>
+        <div class="swiper-slide">Slide 7</div>
+        <div class="swiper-slide">Slide 8</div>
+        <div class="swiper-slide">Slide 9</div> -->
+      </div>
+      <!-- <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div> -->
+      <div class="swiper-pagination"></div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      // const fraction = document.getElementById("fraction");
+      // const slides = document.querySelectorAll(".swiper-slide");
+      // const slideCount = slides.length;
+      // console.log(slideCount);
+
+      // var swiper = new Swiper(".mySwiper", {
+      //   pagination: {
+      //     el: ".swiper-pagination",
+      //     type: "progressbar",
+      //   },
+      //   on: {
+      //     slideChange: () => {
+      //       fraction.textContent = `${swiper.realIndex + 1} / ${slideCount}`;
+      //     },
+      //   },
+      // });
+
+      $(document).ready(function () {
+        var mainslider = new Swiper(".mySwiper", {
+          pagination: {
+            el: ".swiper-pagination",
+            type: "progressbar",
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+
+        var counter = $(".fraction");
+        var currentCount = $('<span class="count">1/5<span/>');
+        counter.append(currentCount);
+
+        mainslider.on("transitionStart", function () {
+          var index = this.activeIndex + 1,
+            $current = $(".photo-slide").eq(index),
+            $c_cur = $("#count_cur"),
+            $c_next = $("#count_next"),
+            dur = 0.8;
+
+          var prevCount = $(".count");
+          currentCount = $(
+            '<span class="count next">' + index + "/5" + "<span/>"
+          );
+          counter.html(currentCount);
+        });
+      });
+    </script>
+  </body>
+</html>
